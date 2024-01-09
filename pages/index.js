@@ -1,15 +1,14 @@
-import ThemeProvider from 'react-toolbox/lib/ThemeProvider'
-import theme from '../theme'
 import Head from 'next/head'
 
-import Button from 'react-toolbox/lib/button/Button'
-import App from "../public/components /App";
-
+import { Container, Row, Card, Button } from 'react-bootstrap'
+import App from "../src/components/App";
 
 export default function Home() {
   return (
-    <div>
-     <App/>
-    </div>
-  )
+      <Container class="" fluid>
+        <Container>
+          <App/>
+        </Container>
+      </Container>
+)
 }

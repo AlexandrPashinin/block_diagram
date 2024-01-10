@@ -5,19 +5,21 @@ import ReactFlow, {
     Background,
     useNodesState,
     useEdgesState,
-    useNodes,
-    useEdges,
     addEdge,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import {Col, Card, Container, Row, CardHeader, Button} from "react-bootstrap";
+import TextUpdaterNode from './TextUpdaterNode'
+
 
 
 // начальные блоки
 const initialNodes = [];
 
 //построение связей между блоками
-const initialEdges = [];
+const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+
+const nodeTypes = { textUpdater: TextUpdaterNode };
 
 export default function App() {
     const [textCurrent, setTextCurrent] = useState(null);
@@ -32,13 +34,6 @@ export default function App() {
         [setEdges],
     );
 
-    const handeleSelect = (event, nodes)=>{
-        console.log(event,nodes);
-        // text
-        // setTextCurrent(text)
-    }
-    console.log('>nodes',nodes)
-
     const handelTextCreate = () =>{
         setTextCreate(prevState => !prevState)
     }
@@ -49,9 +44,11 @@ export default function App() {
             id: `${blockCreate.length + newBlocks.length + 1}`,
             position: { x: 0, y: (blockCreate.length + newBlocks.length) * 100 },
             data: { label: 'Новый блок', },
+            type: 'textUpdater'
         };
         setNewBlocks((prevBlocks) => [...prevBlocks, newNode]);
     };
+
 
     // Обновляем узлы при изменении newBlocks
     useEffect(() => {
@@ -72,7 +69,7 @@ export default function App() {
                         onNodesChange={onNodesChange}
                         onEdgesChange={onEdgesChange}
                         onConnect={onConnect}
-                        onSelectionContextMenu={handeleSelect}
+                        nodeTypes={nodeTypes}
                     >
                         <Controls/>
                         <MiniMap/>
@@ -84,7 +81,6 @@ export default function App() {
                 <Card className="h-100" >
                     <Card.Body>
                         <Card.Title>editor</Card.Title>
-                        {/*<Card.Text>There are currently {nodes.length} nodes! </Card.Text>*/}
                         <Card.Body>
                             {textCurrent && (<Button>{textCurrent}</Button>)}
                         </Card.Body>

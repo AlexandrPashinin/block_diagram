@@ -25,11 +25,14 @@ const LayoutFlowComponent = () => {
       animated: true, // или любые другие свойства, которые вы хотите добавить
     };
   };
-  const createNewNode = ({ type, label, suffix, size, style, }) => {
+  const createNewNode = ({ type, data, suffix, size, style }) => {
     let position;
     if (nodes.length > 0) {
       const lastNode = nodes[nodes.length - 1];
-      position = { x: lastNode.position.x + size, y: lastNode.position.y }; // Новый узел справа от последнего
+      position = {
+        x: lastNode.position.x + data.width,
+        y: lastNode.position.y + data.height,
+      };
     } else {
       position = { x: 0, y: 0 }; // Позиция для первого узла
     }
@@ -37,8 +40,8 @@ const LayoutFlowComponent = () => {
       id: `${type}-${suffix}`,
       type,
       position,
-      data: { label },
-      style
+      data: data,
+      style,
     };
   };
 
@@ -51,11 +54,12 @@ const LayoutFlowComponent = () => {
     setNodes((prevNodes) => [...prevNodes, node]);
     // const { parentNode } = nodes[-1]
     if (!parentNode) {
-      return
+      return;
     }
+
     const edge = createNewEdge(node, parentNode);
-    setEdges((prevEdges) => [...prevEdges, edge])
-  }
+    setEdges((prevEdges) => [...prevEdges, edge]);
+  };
 
   return (
     <Container fluid>
@@ -64,12 +68,12 @@ const LayoutFlowComponent = () => {
           <Graph nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
         </Col>
         <Col>
-        <Col md='auto'>
-          <ControlPanel
-            onLayoutChange={onLayout}
-            addNode={addNode}
-          />
-        </Col>
+          <Col md="auto">
+            <ControlPanel
+              onLayoutChange={onLayout}
+              addNode={addNode}
+            />
+          </Col>
         </Col>
       </Row>
     </Container>

@@ -5,6 +5,8 @@ export const initialNodes = [
     type: 'input', // можно использовать различные типы узлов в зависимости от вашей конфигурации
     data: {
       label: 'Узел 1',
+      width: 150,
+      height: 60,
     },
     style: {
       backgroundColor: 'red',

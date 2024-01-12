@@ -16,35 +16,98 @@ import {
 const ControlPanel = ({ addNode }) => {
 
   const typeNodes = [
-    { type: 'start', backgroundColor:"red", label: 'Начало диалога', size: 100, icon: <MdAddCircleOutline /> ,style: {
+    {
+      type: 'start', backgroundColor: 'red',
+      data: {
+        label: 'Начало диалога',
+        width: 150,
+        height: 60,
+        icon: <MdAddCircleOutline />,
+      },
+      style: {
         backgroundColor: 'green',
         backgroundOpacity: 0.5,
-      }},
-    { type: 'check', label: 'Первостепенная проверка условия', size: 75, icon: <MdCheckCircle /> ,style: {
+      },
+    },
+
+    {
+      type: 'check',
+      data: {
+        label: 'Первостепенная проверка условия',
+        width: 150,
+        height: 60,
+        icon: <MdCheckCircle />,
+      },
+      style: {
         backgroundColor: 'lightGreen',
         backgroundOpacity: 0.5,
-      }},
-    { type: 'state', label: 'Состояние диалога', size: 75, icon: <MdRadioButtonUnchecked />,style: {
+      },
+
+    },
+    {
+      type: 'state',
+      data: {
+        label: 'Состояние диалога',
+        width: 150,
+        height: 60,
+        icon: <MdRadioButtonUnchecked />,
+      },
+      style: {
         backgroundColor: 'white',
         backgroundOpacity: 0.5,
-      } },
-    { type: 'transfer', label: 'Передача данных', size: 75, icon: <MdSwapHoriz />,style: {
+      },
+    },
+    {
+      type: 'transfer',
+      data: {
+        label: 'Передача данных',
+        width: 150,
+        height: 60,
+        icon: <MdSwapHoriz />,
+      },
+        style: {
         backgroundColor: 'orange',
         backgroundOpacity: 0.5,
-      } },
-    { type: 'end', label: 'Конец сбора данных', size: 75, icon: <MdHighlightOff />,style: {
-    backgroundColor: 'red',
-      backgroundOpacity: 0.5,
-  } },
-    { type: 'reminder', label: 'Напоминание', size: 75, icon: <MdNotificationsActive /> ,style: {
+      },
+    },
+    {
+      type: 'end',
+      data: {
+        label: 'Конец сбора данных',
+        width: 150,
+        height: 60,
+        icon: <MdHighlightOff />,
+      },
+       style: {
+        backgroundColor: 'red',
+        backgroundOpacity: 0.5,
+      },
+    },
+    {
+      type: 'reminder',
+      data: {
+        label: 'Напоминание',
+        width: 150,
+        height: 60,
+        icon: <MdNotificationsActive />,
+      },
+      style: {
         backgroundColor: 'blue',
         backgroundOpacity: 0.5,
-      }},
-    { type: 'comment', label: 'Комментарий', size: 75, icon: <MdComment />,
+      },
+    },
+    {
+      type: 'comment',
+      data: {
+        label: 'Комментарий',
+        width: 150,
+        height: 60,
+        icon: <MdComment />,
+      },
       style: {
         backgroundColor: 'grey',
         backgroundOpacity: 0.5,
-      }
+      },
     },
   ];
 
@@ -61,7 +124,7 @@ const ControlPanel = ({ addNode }) => {
                 action
                 onClick={() => handleAddNode(index)}
               >
-                {node.icon} Добавить "{node.label}"
+                {node.data.icon} Добавить "{node.data.label}"
               </ListGroup.Item>
             ))}
           </ListGroup>

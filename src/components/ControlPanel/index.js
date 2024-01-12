@@ -1,6 +1,6 @@
 // ControlPanel.js
-import React from 'react';
-import { Card, ListGroup } from 'react-bootstrap';
+import React , {useState} from 'react';
+import { Card, ListGroup, Button } from 'react-bootstrap';
 
 import {
   MdAddCircleOutline,
@@ -14,7 +14,7 @@ import {
 } from 'react-icons/md';
 
 const ControlPanel = ({ addNode }) => {
-
+const [open , setOpen] = useState(false)
   const typeNodes = [
     {
       type: 'start', backgroundColor: 'red',
@@ -110,6 +110,9 @@ const ControlPanel = ({ addNode }) => {
       },
     },
   ];
+const handleWindow = ()=>{
+  setOpen(prev=>!prev)
+}
 
   const handleAddNode = (i) => addNode(typeNodes[i]);
   return (
@@ -118,7 +121,8 @@ const ControlPanel = ({ addNode }) => {
         <Card.Title>Редактор</Card.Title>
         <Card.Body>
           <ListGroup>
-            {typeNodes.map((node, index) => (
+            <Button onClick={handleWindow}  style={{ backgroundColor: 'white', color: 'black', border: '1px solid gray', marginBottom: '10px' }}>Диалоговое окно состояний </Button>
+            {open && typeNodes.map((node, index) => (
               <ListGroup.Item
                 key={index}
                 action

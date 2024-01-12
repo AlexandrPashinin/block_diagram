@@ -1,25 +1,39 @@
 // ControlPanel.js
 import React from 'react';
-import { Container, Row, Col, Button, Card, ListGroup, Offcanvas } from 'react-bootstrap';
+import { Card, ListGroup, } from 'react-bootstrap';
 import { MdAddCircleOutline } from 'react-icons/md';
 
-const ControlPanel = ({ onLayoutChange, handleAddStartNode, handleAddHelloNode }) => (
-  <Card className='h-100'>
-    <Card.Body>
-      <Card.Title>Редактор</Card.Title>
+const ControlPanel = ({ onLayoutChange, addNode, handleAddHelloNode }) => {
+
+  const typeNodes = [
+    {type:"hello", label: "Привет", size: 100,icon: <MdAddCircleOutline />},
+    {type:"start", label: "start", size: 50,icon: <MdAddCircleOutline />},
+  ]
+
+  const handleAddNode = (i) => {
+   return  addNode(typeNodes[i])
+  }
+
+  return (
+    <Card className='h-100'>
       <Card.Body>
-        <ListGroup>
-          <ListGroup.Item action onClick={handleAddStartNode}>
-            <MdAddCircleOutline /> Добавить "Старт"
-          </ListGroup.Item>
-          <ListGroup.Item action onClick={handleAddHelloNode}>
-            <MdAddCircleOutline /> Добавить "Привет"
-          </ListGroup.Item>
-          {/* Добавьте дополнительные кнопки здесь при необходимости */}
-        </ListGroup>
+        <Card.Title>Редактор</Card.Title>
+        <Card.Body>
+          <ListGroup>
+            {typeNodes.map((node, index) => (
+              <ListGroup.Item
+                key={index}
+                action
+                onClick={() => handleAddNode(index)}
+              >
+                {node.icon} Добавить "{node.label}"
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Card.Body>
       </Card.Body>
-    </Card.Body>
-  </Card>
-);
+    </Card>
+  );
+}
 
 export default ControlPanel;

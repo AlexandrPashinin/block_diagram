@@ -16,8 +16,6 @@ const StartNode = ({ data, isConnectable }) => {
         </button>
     ));
 
-    console.log(data, "data");
-
     return (
         <div className="border border-primary p-3 rounded">
             <Handle type="target" position={Position.Top} isConnectable={isConnectable} />

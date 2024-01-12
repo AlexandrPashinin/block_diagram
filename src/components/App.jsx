@@ -22,7 +22,6 @@ const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 const nodeTypes = { textUpdater: TextUpdaterNode };
 
 export default function App() {
-    const [textCurrent, setTextCurrent] = useState(null);
     const [ textCreate, setTextCreate] = useState(false)
     const [ blockCreate, setBlockCreate] = useState([])
     const [newBlocks, setNewBlocks] = useState([]);
@@ -82,7 +81,6 @@ export default function App() {
                     <Card.Body>
                         <Card.Title>editor</Card.Title>
                         <Card.Body>
-                            {textCurrent && (<Button>{textCurrent}</Button>)}
                         </Card.Body>
                         {textCreate && <textarea placeholder="Введите сообщение..."  className="form-control mb-3  " id="exampleFormControlTextarea1" rows="3"/>}
                         <Row>

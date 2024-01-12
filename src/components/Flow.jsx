@@ -11,6 +11,7 @@ import 'reactflow/dist/style.css';
 import { Col, Card, Row, Button } from 'react-bootstrap';
 import StartNode from './StartNode';
 import HelloNode from './HelloNode';
+import DialogWindow from './DialogWindow';
 
 const initialNodes = [
   {
@@ -48,6 +49,7 @@ const nodeTypes = {
 export default function Flow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [ scriptWindow, setScriptWindow ] = useState(false)
 
   const onConnect = useCallback(
     (params) => {
@@ -84,6 +86,12 @@ export default function Flow() {
 
   };
 
+  const handleWindow = () =>{
+    setScriptWindow(prev=>  !prev)
+  }
+
+
+
   return (
     <Row className="w-100">
       <Col xs={8}>
@@ -118,6 +126,10 @@ export default function Flow() {
                 </Button>
               </Col>
             </Row>
+            <Button className="mb-2 w-100" onClick={handleWindow} >
+              Добавить "сценарий"
+            </Button>
+            {scriptWindow && <DialogWindow/>}
           </Card.Body>
         </Card>
       </Col>

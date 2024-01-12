@@ -63,17 +63,14 @@ const LayoutFlowComponent = () => {
 
   return (
     <Container fluid>
-      <Row>
-        <Col xs={10}>
+      <Row className="h-100">
+        <Col className="h-100" xs={10}>
           <Graph nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
         </Col>
-        <Col>
-          <Col md="auto">
-            <ControlPanel
-              onLayoutChange={onLayout}
-              addNode={addNode}
-            />
-          </Col>
+        <Col className="h-100">
+          <ControlPanel
+            addNode={addNode}
+          />
         </Col>
       </Row>
     </Container>

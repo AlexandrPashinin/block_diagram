@@ -7,7 +7,7 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
 } from 'reactflow';
-import 'reactflow/dist/style.css';
+// import 'reactflow/dist/style.css';
 import { Col, Card, Row, Button } from 'react-bootstrap';
 import StartNode from './StartNode';
 import HelloNode from './HelloNode';
@@ -23,14 +23,13 @@ const initialNodes = [
   {
     id: '2',
     type: 'hello',
-    position: { x: 200, y: 0 },
+    position: { x: 200, y: 250 },
     data: { label: 'Начало', },
   },
-
   {
     id: '2a',
     data: { label: 'Node A.1' },
-    position: { x: 10, y: 50 },
+    position: { x: 230, y: 250 },
     parentNode: '2',
   },
 

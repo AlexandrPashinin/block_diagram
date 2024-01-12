@@ -13,6 +13,7 @@ const StartDialogue =( {title, image} ) =>{
     },
   };
 
+
   return(
     <>
       {image}

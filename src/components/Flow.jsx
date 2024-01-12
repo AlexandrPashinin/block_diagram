@@ -7,10 +7,10 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
 } from 'reactflow';
-// import 'reactflow/dist/style.css';
-import { Col, Card, Row, Button } from 'react-bootstrap';
 import StartNode from './StartNode';
 import HelloNode from './HelloNode';
+import { Container, Row, Col, Button, Card, Offcanvas } from 'react-bootstrap';
+
 
 const initialNodes = [
   {
@@ -23,7 +23,7 @@ const initialNodes = [
     id: '2',
     type: 'hello',
     position: { x: 200, y: 250 },
-    data: { label: 'Начало', },
+    data: { label: 'Начало' },
   },
   {
     id: '2a',
@@ -40,11 +40,16 @@ const initialEdges = [
 ];
 
 const nodeTypes = {
-  start: (props) => <StartNode {...props} additionalProp="valueForStart" />,
-  hello: (props) => <HelloNode {...props} additionalProp="valueForHello" />,
+  start: (props) => <StartNode {...props} additionalProp='valueForStart' />,
+  hello: (props) => <HelloNode {...props} additionalProp='valueForHello' />,
 };
 
 export default function Flow() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -57,7 +62,7 @@ export default function Flow() {
       };
       setEdges((prevEdges) => [...prevEdges, newEdge]);
     },
-    [setEdges]
+    [setEdges],
   );
 
   const handleAddStartNode = () => {
@@ -84,42 +89,57 @@ export default function Flow() {
   };
 
   return (
-    <Row className="w-100">
-      <Col xs={8}>
-        <div style={{ width: '100%', height: '100vh' }}>
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            nodeTypes={nodeTypes}
-          >
-            <Controls />
-            <MiniMap />
-            <Background variant="dots" gap={12} size={1} />
-          </ReactFlow>
-        </div>
-      </Col>
-      <Col>
-        <Card className="h-100">
-          <Card.Body>
-            <Card.Title>Редактор</Card.Title>
-            <Row>
-              <Col md={6}>
-                <Button className="mb-2 w-100" onClick={handleAddStartNode}>
-                  Добавить "Старт"
-                </Button>
-              </Col>
-              <Col md={6}>
-                <Button className="mb-2 w-100" onClick={handleAddHelloNode}>
-                  Добавить "Привет"
-                </Button>
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+    <Container fluid>
+      <Row>
+        <Col xs={10}>
+          <div style={{ width: '100%', height: '100vh' }}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              nodeTypes={nodeTypes}
+            >
+              <Controls />
+              <MiniMap />
+              <Background variant='dots' gap={12} size={1} />
+            </ReactFlow>
+          </div>
+        </Col>
+        <Col>
+          <Col md='auto'>
+            <Card className='h-100'>
+              <Card.Body>
+                <Card.Title>Редактор</Card.Title>
+                <Card.Subtitle>
+                  <Button variant='primary' onClick={handleShow}>Управление</Button>
+                </Card.Subtitle>
+                <Card.Body>
+                  <Col md={6}>
+                    <Button className='mb-2 w-100' onClick={handleAddStartNode}>
+                      Добавить "Старт"
+                    </Button>
+                  </Col>
+                  <Col md={6}>
+                    <Button className='mb-2 w-100' onClick={handleAddHelloNode}>
+                      Добавить "Привет"
+                    </Button>
+                  </Col>
+                </Card.Body>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Col>
+      </Row>
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Панель Управления</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          DDDD
+        </Offcanvas.Body>
+      </Offcanvas>
+    </Container>
   );
 }

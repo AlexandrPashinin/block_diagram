@@ -1,14 +1,30 @@
 // ControlPanel.js
 import React from 'react';
 import { Card, ListGroup, } from 'react-bootstrap';
-import { MdAddCircleOutline } from 'react-icons/md';
 
-const ControlPanel = ({ onLayoutChange, addNode, handleAddHelloNode }) => {
+import {
+  MdAddCircleOutline,
+  MdCheckCircle,
+  MdRadioButtonUnchecked,
+  MdSwapHoriz,
+  MdHighlightOff,
+  MdNotificationsActive,
+  MdComment,
+  // Импортируйте другие иконки, соответствующие вашему дизайну
+} from 'react-icons/md';
+
+const ControlPanel = ({ addNode }) => {
 
   const typeNodes = [
-    {type:"hello", label: "Привет", size: 100,icon: <MdAddCircleOutline />},
-    {type:"start", label: "start", size: 50,icon: <MdAddCircleOutline />},
-  ]
+    { type: "start", label: "Начало диалога", size: 100, icon: <MdAddCircleOutline /> },
+    { type: "check", label: "Первостепенная проверка условия", size: 75, icon: <MdCheckCircle /> },
+    { type: "state", label: "Состояние диалога", size: 75, icon: <MdRadioButtonUnchecked /> },
+    { type: "transfer", label: "Передача данных", size: 75, icon: <MdSwapHoriz /> },
+    { type: "end", label: "Конец сбора данных", size: 75, icon: <MdHighlightOff /> },
+    { type: "reminder", label: "Напоминание", size: 75, icon: <MdNotificationsActive /> },
+    { type: "comment", label: "Комментарий", size: 75, icon: <MdComment /> },
+    // Добавьте другие типы узлов согласно вашему дизайну
+  ];
 
   const handleAddNode = (i) => {
    return  addNode(typeNodes[i])

@@ -17,6 +17,14 @@ const LayoutFlowComponent = () => {
     (direction) => {
     }, []);
 
+  const createNewEdge = (newNode, prevNode) => {
+    return {
+      id: `e${prevNode.id}-${newNode.id}`,
+      source: prevNode.id,
+      target: newNode.id,
+      animated: true, // или любые другие свойства, которые вы хотите добавить
+    };
+  };
   const createNewNode = ({ type, label, suffix, size }) => {
     let position;
     if (nodes.length > 0) {
@@ -34,16 +42,18 @@ const LayoutFlowComponent = () => {
   };
 
 
-  const handleAddHelloNode = () => {
-    const randomSuffix = Math.floor(Math.random() * 1000);
-    const newNode = createNewNode('hello', `Привет! ${randomSuffix}`, randomSuffix);
-    setNodes((prevNodes) => [...prevNodes, newNode]);
-  };
-
   const addNode = (newNode) => {
     const randomSuffix = Math.floor(Math.random() * 1000);
     const node = createNewNode({ randomSuffix, ...newNode });
+    const parentNode = nodes [nodes.length - 1];
+
     setNodes((prevNodes) => [...prevNodes, node]);
+    // const { parentNode } = nodes[-1]
+    if (!parentNode) {
+      return
+    }
+    const edge = createNewEdge(node, parentNode);
+    setEdges((prevEdges) => [...prevEdges, edge])
   }
 
   return (
@@ -57,7 +67,6 @@ const LayoutFlowComponent = () => {
           <ControlPanel
             onLayoutChange={onLayout}
             addNode={addNode}
-            handleAddHelloNode={handleAddHelloNode}
           />
         </Col>
         </Col>

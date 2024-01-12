@@ -1,6 +1,6 @@
 // ControlPanel.js
 import React from 'react';
-import { Card, ListGroup, } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 
 import {
   MdAddCircleOutline,
@@ -16,22 +16,18 @@ import {
 const ControlPanel = ({ addNode }) => {
 
   const typeNodes = [
-    { type: "start", label: "Начало диалога", size: 100, icon: <MdAddCircleOutline /> },
-    { type: "check", label: "Первостепенная проверка условия", size: 75, icon: <MdCheckCircle /> },
-    { type: "state", label: "Состояние диалога", size: 75, icon: <MdRadioButtonUnchecked /> },
-    { type: "transfer", label: "Передача данных", size: 75, icon: <MdSwapHoriz /> },
-    { type: "end", label: "Конец сбора данных", size: 75, icon: <MdHighlightOff /> },
-    { type: "reminder", label: "Напоминание", size: 75, icon: <MdNotificationsActive /> },
-    { type: "comment", label: "Комментарий", size: 75, icon: <MdComment /> },
-    // Добавьте другие типы узлов согласно вашему дизайну
+    { type: 'start', label: 'Начало диалога', size: 100, icon: <MdAddCircleOutline /> },
+    { type: 'check', label: 'Первостепенная проверка условия', size: 75, icon: <MdCheckCircle /> },
+    { type: 'state', label: 'Состояние диалога', size: 75, icon: <MdRadioButtonUnchecked /> },
+    { type: 'transfer', label: 'Передача данных', size: 75, icon: <MdSwapHoriz /> },
+    { type: 'end', label: 'Конец сбора данных', size: 75, icon: <MdHighlightOff /> },
+    { type: 'reminder', label: 'Напоминание', size: 75, icon: <MdNotificationsActive /> },
+    { type: 'comment', label: 'Комментарий', size: 75, icon: <MdComment /> },
   ];
 
-  const handleAddNode = (i) => {
-   return  addNode(typeNodes[i])
-  }
-
+  const handleAddNode = (i) => addNode(typeNodes[i]);
   return (
-    <Card className='h-100'>
+    <Card className="h-100">
       <Card.Body>
         <Card.Title>Редактор</Card.Title>
         <Card.Body>
@@ -50,6 +46,6 @@ const ControlPanel = ({ addNode }) => {
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default ControlPanel;

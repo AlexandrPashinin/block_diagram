@@ -4,8 +4,6 @@
 import React, { useCallback } from 'react';
 import { Handle, Position } from 'reactflow';
 
-const handleStyle = { left: 10 };
-
 const HelloNode = ({ data, isConnectable }) => {
     const onChange = useCallback((evt) => {
     }, []);

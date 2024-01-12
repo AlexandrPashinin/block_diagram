@@ -1,41 +1,28 @@
-// StartNode.js
-import React, { useState } from 'react';
+
+
+// HelloNode.js
+import React, { useCallback } from 'react';
 import { Handle, Position } from 'reactflow';
 
-const StartNode = ({ data, isConnectable }) => {
+const handleStyle = { left: 10 };
 
-  const [buttonCount, setButtonCount] = useState(0);
+const HelloNode = ({ data, isConnectable }) => {
 
-  const handleAddButton = () => {
-    setButtonCount((prevCount) => prevCount + 1);
-  };
+  const onChange = useCallback((evt) => {
 
-  const buttons = Array.from({ length: buttonCount }, (_, index) => (
-    <button key={index} className="btn btn-secondary m-2">
-      Кнопка {index + 1}
-    </button>
-  ));
-
-  console.log(data, "data");
+  }, []);
 
   return (
-    <div className="border border-primary p-3 rounded">
-      <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
+    <div  className="border border-success p-3 rounded">
+
       <h4>Привет</h4>
       <p>{data.label}</p>
-      <div>
-        <p>Добавить кнопки:</p>
-        <button className="btn btn-success" onClick={handleAddButton}>
-          Добавить кнопку
-        </button>
-      </div>
-      <div className="mt-3 d-flex flex-column">{buttons}</div>
-
-
 
       <Handle type="source" position={Position.Bottom} id="b" isConnectable={isConnectable} />
+
+
     </div>
   );
 };
 
-export default StartNode;
+export default HelloNode;

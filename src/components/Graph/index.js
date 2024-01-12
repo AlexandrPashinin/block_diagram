@@ -1,9 +1,8 @@
 // Graph.js
 import React from 'react';
 import ReactFlow, { Background, Controls, MiniMap } from 'reactflow';
-import StartNode from '../StartNode';
-import HelloNode from '../HelloNode';
-
+import StartNode from './types/StartNode';
+import HelloNode from './types/HelloNode';
 
 const nodeTypes = {
   start: (props) => <StartNode {...props} additionalProp='valueForStart' />,

@@ -8,7 +8,6 @@ const DialogWindow  = () =>{
             <Col><Button  className="mb-2 w-100 btn-secondary ">сценарий2</Button > </Col>
             <Col><Button  className="mb-2 w-100 btn-secondary">сценарий3</Button > </Col>
             <Col><Button  className="mb-2 w-100 btn-secondary">сценарий4</Button> </Col>
-
         </div>
     )
 }

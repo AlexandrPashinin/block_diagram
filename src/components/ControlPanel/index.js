@@ -16,15 +16,33 @@ import {
 const ControlPanel = ({ addNode }) => {
 
   const typeNodes = [
-    { type: 'start', backgroundColor:"red", label: 'Начало диалога', size: 100, icon: <MdAddCircleOutline /> },
-    { type: 'check', label: 'Первостепенная проверка условия', size: 75, icon: <MdCheckCircle /> },
-    { type: 'state', label: 'Состояние диалога', size: 75, icon: <MdRadioButtonUnchecked /> },
-    { type: 'transfer', label: 'Передача данных', size: 75, icon: <MdSwapHoriz /> },
-    { type: 'end', label: 'Конец сбора данных', size: 75, icon: <MdHighlightOff /> },
-    { type: 'reminder', label: 'Напоминание', size: 75, icon: <MdNotificationsActive /> },
+    { type: 'start', backgroundColor:"red", label: 'Начало диалога', size: 100, icon: <MdAddCircleOutline /> ,style: {
+        backgroundColor: 'green',
+        backgroundOpacity: 0.5,
+      }},
+    { type: 'check', label: 'Первостепенная проверка условия', size: 75, icon: <MdCheckCircle /> ,style: {
+        backgroundColor: 'lightGreen',
+        backgroundOpacity: 0.5,
+      }},
+    { type: 'state', label: 'Состояние диалога', size: 75, icon: <MdRadioButtonUnchecked />,style: {
+        backgroundColor: 'white',
+        backgroundOpacity: 0.5,
+      } },
+    { type: 'transfer', label: 'Передача данных', size: 75, icon: <MdSwapHoriz />,style: {
+        backgroundColor: 'orange',
+        backgroundOpacity: 0.5,
+      } },
+    { type: 'end', label: 'Конец сбора данных', size: 75, icon: <MdHighlightOff />,style: {
+    backgroundColor: 'red',
+      backgroundOpacity: 0.5,
+  } },
+    { type: 'reminder', label: 'Напоминание', size: 75, icon: <MdNotificationsActive /> ,style: {
+        backgroundColor: 'blue',
+        backgroundOpacity: 0.5,
+      }},
     { type: 'comment', label: 'Комментарий', size: 75, icon: <MdComment />,
       style: {
-        backgroundColor: 'red',
+        backgroundColor: 'grey',
         backgroundOpacity: 0.5,
       }
     },

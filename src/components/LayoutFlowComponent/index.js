@@ -17,30 +17,34 @@ const LayoutFlowComponent = () => {
     (direction) => {
     }, []);
 
+  const createNewNode = ({ type, label, suffix, size }) => {
+    let position;
+    if (nodes.length > 0) {
+      const lastNode = nodes[nodes.length - 1];
+      position = { x: lastNode.position.x + size, y: lastNode.position.y }; // Новый узел справа от последнего
+    } else {
+      position = { x: 0, y: 0 }; // Позиция для первого узла
+    }
+    return {
+      id: `${type}-${suffix}`,
+      type,
+      position,
+      data: { label },
+    };
+  };
+
+
   const handleAddHelloNode = () => {
     const randomSuffix = Math.floor(Math.random() * 1000);
-
-    const newNode = {
-      id: `helloNode-${randomSuffix}`,
-      type: 'hello',
-      position: { x: 200, y: 0 },
-      data: { label: `Привет! ${randomSuffix}` },
-    };
+    const newNode = createNewNode('hello', `Привет! ${randomSuffix}`, randomSuffix);
     setNodes((prevNodes) => [...prevNodes, newNode]);
   };
 
-  const handleAddStartNode = () => {
+  const addNode = (newNode) => {
     const randomSuffix = Math.floor(Math.random() * 1000);
-    const newNode = {
-      id: `startNode-${randomSuffix}`,
-      type: 'start',
-      position: { x: 0, y: 0 },
-      data: { label: 'Начало' },
-    };
-
-    setNodes((prevNodes) => [...prevNodes, newNode]);
-  };
-
+    const node = createNewNode({ randomSuffix, ...newNode });
+    setNodes((prevNodes) => [...prevNodes, node]);
+  }
 
   return (
     <Container fluid>
@@ -52,7 +56,7 @@ const LayoutFlowComponent = () => {
         <Col md='auto'>
           <ControlPanel
             onLayoutChange={onLayout}
-            handleAddStartNode={handleAddStartNode}
+            addNode={addNode}
             handleAddHelloNode={handleAddHelloNode}
           />
         </Col>

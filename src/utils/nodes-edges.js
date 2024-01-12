@@ -3,7 +3,13 @@ export const initialNodes = [
   {
     id: '1',
     type: 'input', // можно использовать различные типы узлов в зависимости от вашей конфигурации
-    data: { label: 'Узел 1' },
+    data: {
+      label: 'Узел 1',
+    },
+    style: {
+      backgroundColor: 'red',
+      backgroundOpacity: 0.5,
+    },
     position: { x: 250, y: 5 },
   },
   {
@@ -19,9 +25,11 @@ export const initialNodes = [
 ];
 
 export const initialEdges = [
-  { id: '1-2',
+  {
+    id: '1-2',
     source: '1',
     target: '2',
-    animated: true },
-  { id: 'c1-2', source: '1', target: '3' , animated: true },
+    animated: true,
+  },
+  { id: 'c1-2', source: '1', target: '3', animated: true },
 ];

@@ -7,14 +7,14 @@ import HelloNode from './types/HelloNode';
 import { CheckNode, TransferNode, EndNode, ReminderNode, CommentNode,StateNode } from './types/index';
 
 const nodeTypes = {
-  start: (props) => <StartNode {...props} additionalProp="valueForStart" />,
-  hello: (props) => <HelloNode {...props} additionalProp="valueForHello" />,
-  check: (props) => <CheckNode {...props} additionalProp="valueForCheck" />,
-  state: (props) => <StateNode {...props} additionalProp="valueForState" />,
-  transfer: (props) => <TransferNode {...props} additionalProp="valueForTransfer" />,
-  end: (props) => <EndNode {...props} additionalProp="valueForEnd" />,
-  reminder: (props) => <ReminderNode {...props} additionalProp="valueForReminder" />,
-  comment: (props) => <CommentNode {...props} additionalProp="valueForComment" />,
+  // start: (props) => <StartNode {...props} additionalProp="valueForStart" />,
+  // hello: (props) => <HelloNode {...props} additionalProp="valueForHello" />,
+  // check: (props) => <CheckNode {...props} additionalProp="valueForCheck" />,
+  // state: (props) => <StateNode {...props} additionalProp="valueForState" />,
+  // transfer: (props) => <TransferNode {...props} additionalProp="valueForTransfer" />,
+  // end: (props) => <EndNode {...props} additionalProp="valueForEnd" />,
+  // reminder: (props) => <ReminderNode {...props} additionalProp="valueForReminder" />,
+  // comment: (props) => <CommentNode {...props} additionalProp="valueForComment" />,
 };
 
 
@@ -26,7 +26,7 @@ const Graph = ({ nodes, edges, onNodesChange, onEdgesChange }) => (
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       fitView
-      nodeTypes={nodeTypes}
+      // nodeTypes={nodeTypes}
     >
       <Controls />
       <MiniMap />

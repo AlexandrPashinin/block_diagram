@@ -25,7 +25,7 @@ const LayoutFlowComponent = () => {
       animated: true, // или любые другие свойства, которые вы хотите добавить
     };
   };
-  const createNewNode = ({ type, label, suffix, size }) => {
+  const createNewNode = ({ type, label, suffix, size, style, }) => {
     let position;
     if (nodes.length > 0) {
       const lastNode = nodes[nodes.length - 1];
@@ -38,6 +38,7 @@ const LayoutFlowComponent = () => {
       type,
       position,
       data: { label },
+      style
     };
   };
 

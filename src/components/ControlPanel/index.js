@@ -16,13 +16,18 @@ import {
 const ControlPanel = ({ addNode }) => {
 
   const typeNodes = [
-    { type: 'start', label: 'Начало диалога', size: 100, icon: <MdAddCircleOutline /> },
+    { type: 'start', backgroundColor:"red", label: 'Начало диалога', size: 100, icon: <MdAddCircleOutline /> },
     { type: 'check', label: 'Первостепенная проверка условия', size: 75, icon: <MdCheckCircle /> },
     { type: 'state', label: 'Состояние диалога', size: 75, icon: <MdRadioButtonUnchecked /> },
     { type: 'transfer', label: 'Передача данных', size: 75, icon: <MdSwapHoriz /> },
     { type: 'end', label: 'Конец сбора данных', size: 75, icon: <MdHighlightOff /> },
     { type: 'reminder', label: 'Напоминание', size: 75, icon: <MdNotificationsActive /> },
-    { type: 'comment', label: 'Комментарий', size: 75, icon: <MdComment /> },
+    { type: 'comment', label: 'Комментарий', size: 75, icon: <MdComment />,
+      style: {
+        backgroundColor: 'red',
+        backgroundOpacity: 0.5,
+      }
+    },
   ];
 
   const handleAddNode = (i) => addNode(typeNodes[i]);

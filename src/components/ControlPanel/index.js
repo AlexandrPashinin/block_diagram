@@ -18,8 +18,10 @@ import {
   MdHighlightOff,
   MdNotificationsActive,
   MdComment,
-  // Импортируйте другие иконки, соответствующие вашему дизайну
+  MdAnalytics,
 } from 'react-icons/md';
+import { TbApi } from 'react-icons/tb';
+import { FaBars } from 'react-icons/fa';
 import { BiAlarmAdd, BiCalculator, BiMessage, BiPaperclip, BiTask } from 'react-icons/bi';
 
 const typeNodes = [
@@ -121,10 +123,13 @@ const typeNodes = [
 const ControlPanel = ({ element, editNode, addNode }) => {
   const [elementState, setElementState] = useState({});
   const [buttonStates, setButtonStates] = useState({
-    sendMessage: false,
+    sendMessage: true,
     attachFile: false,
     performAction: false,
     calculator: false,
+    buttons: false,
+    api: false,
+    analytics: false,
   });
   const renderTypeNode = (index, node) => {
     const handleAddNode = () => addNode(typeNodes[index]);
@@ -179,7 +184,7 @@ const ControlPanel = ({ element, editNode, addNode }) => {
   }, [element]);
 
   return (
-    <Card className='h-100 shadow' style={{ maxWidth: '208px' }}>
+    <Card className='h-100 shadow'>
       <Card.Body className='d-flex flex-column'>
         <Card.Title>Редактор</Card.Title>
         <Dropdown as={ButtonGroup}>
@@ -201,42 +206,81 @@ const ControlPanel = ({ element, editNode, addNode }) => {
           </Form.Group>
         </Form>}
 
-        {buttonStates.attachFile &&  <div className='mt-3'>Вложение</div> }
+        {buttonStates.attachFile && <div className='mt-3'>Вложение</div>}
+        {buttonStates.buttons && <div className='mt-3'>Кнопки</div>}
+        {buttonStates.performAction && <div className='mt-3'>Действие</div>}
+        {buttonStates.calculator && <div className='mt-3'>Калькулятор</div>}
+        {buttonStates.api && <div className='mt-3'>API - запрос</div>}
+        {buttonStates.analytics && <div className='mt-3'>Аналитика</div>}
 
-        <div className='mt-3' style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        {/*sendMessage: true,
+    attachFile: false,
+    performAction: false,
+    calculator: false,
+    buttons: false,
+    api: false,
+    analytics: false,*/}
 
-          <Button variant={buttonStates.sendMessage ? 'primary' : 'outline-primary'} onClick={() => {
+        <div className='mt-3' style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px' }}>
+
+          <Button className='d-flex align-items-center justify-content-start'
+                  variant={buttonStates.sendMessage ? 'primary' : 'outline-primary'} onClick={() => {
             handleSendMessage();
             handleButtonClick('sendMessage');
           }}>
-            <BiMessage /> Сообщение
+            <BiMessage style={{ marginRight: 4 }} /> Сообщение
           </Button>
 
-          <Button variant={buttonStates.attachFile ? 'primary' : 'outline-primary'} onClick={() => {
+          <Button className='d-flex align-items-center justify-content-start'
+                  variant={buttonStates.attachFile ? 'primary' : 'outline-primary'} onClick={() => {
             handleAttachFile();
             handleButtonClick('attachFile');
           }}>
-            <BiPaperclip /> Вложение
+            <BiPaperclip style={{ marginRight: 4 }} /> Вложение
           </Button>
 
-          <Button variant={buttonStates.performAction ? 'primary' : 'outline-primary'} onClick={() => {
+          <Button className='d-flex align-items-center justify-content-start'
+                  variant={buttonStates.buttons ? 'primary' : 'outline-primary'} onClick={() => {
+            handleButtonClick('buttons');
+          }}>
+            <FaBars style={{ marginRight: 4 }} /> Кнопки
+          </Button>
+
+          <Button className='d-flex align-items-center justify-content-start'
+                  variant={buttonStates.performAction ? 'primary' : 'outline-primary'} onClick={() => {
             handlePerformAction();
             handleButtonClick('performAction');
           }}>
-            <BiTask /> Действие
+            <BiTask style={{ marginRight: 4 }} /> Действие
           </Button>
 
-          <Button variant={buttonStates.calculator ? 'primary' : 'outline-primary'} onClick={() => {
+          <Button className='d-flex align-items-center justify-content-start'
+                  variant={buttonStates.calculator ? 'primary' : 'outline-primary'} onClick={() => {
             handleCalculator();
             handleButtonClick('calculator');
           }}>
-            <BiCalculator /> Калькулятор
+            <BiCalculator style={{ marginRight: 4 }} /> Калькулятор
           </Button>
+
+          <Button className='d-flex align-items-center jjustify-content-start'
+                  variant={buttonStates.api ? 'primary' : 'outline-primary'} onClick={() => {
+            handleButtonClick('api');
+          }}>
+            <TbApi style={{ marginRight: 4 }} /> Api - запрос
+          </Button>
+
+          <Button className='d-flex align-items-center justify-content-start'
+                  variant={buttonStates.analytics ? 'primary' : 'outline-primary'} onClick={() => {
+            handleButtonClick('analytics');
+          }}>
+            <MdAnalytics style={{ marginRight: 4 }} /> Аналитика
+          </Button>
+
         </div>
 
       </Card.Body>
-      <Card.Footer>
-        <ButtonGroup full size='sm'>
+      <Card.Footer className='d-flex justify-content-center'>
+        <ButtonGroup size='sm'>
           <Button className='btn btn-primary' onClick={() => editNode(elementState)}>Сохранить</Button>
           <Button className='btn btn-default' onClick={() => editNode(elementState)}>Сохранить и закрыть</Button>
         </ButtonGroup>

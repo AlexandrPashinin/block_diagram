@@ -79,7 +79,7 @@ const LayoutFlowComponent = () => {
   return (
     <Container fluid>
       <Row className="h-100">
-        <Col className="h-100" xs={10}>
+        <Col className="h-100" xs={9}>
           <Graph nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
         </Col>
         <Col className="h-100">

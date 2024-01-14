@@ -82,7 +82,7 @@ const LayoutFlowComponent = () => {
         <Col className="h-100" xs={9}>
           <Graph nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
         </Col>
-        <Col className="h-100">
+        <Col className="h-100" xs={3}>
           <ControlPanel
             editNode={editNode}
             addNode={addNode}

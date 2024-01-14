@@ -162,13 +162,17 @@ const ControlPanel = ({ element, editNode, addNode }) => {
   };
 
   const handleChange = (e) => {
-    setElementState((prevState) => ({
-      ...prevState,
-      data: {
+    setElementState((prevState) => {
+      const newData = {
         ...prevState.data,
         label: e.target.value,
-      },
-    }));
+      };
+
+      return {
+        ...prevState,
+        data: newData,
+      };
+    });
   };
 
   const handleButtonClick = (buttonName) => {
@@ -200,7 +204,7 @@ const ControlPanel = ({ element, editNode, addNode }) => {
             <Form.Control
               as='textarea'
               rows={3}
-              value={elementState?.data?.label}
+              value={elementState?.data?.label || ''}
               onChange={handleChange}
             />
           </Form.Group>
@@ -213,13 +217,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
         {buttonStates.api && <div className='mt-3'>API - запрос</div>}
         {buttonStates.analytics && <div className='mt-3'>Аналитика</div>}
 
-        {/*sendMessage: true,
-    attachFile: false,
-    performAction: false,
-    calculator: false,
-    buttons: false,
-    api: false,
-    analytics: false,*/}
 
         <div className='mt-3' style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px' }}>
 

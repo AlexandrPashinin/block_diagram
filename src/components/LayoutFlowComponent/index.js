@@ -1,5 +1,5 @@
 // LayoutFlowComponent.js
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNodesState, useEdgesState, useReactFlow } from 'reactflow';
 import { initialNodes, initialEdges } from '../../utils/nodes-edges.js';
 import Graph from '../Graph';
@@ -12,6 +12,7 @@ const LayoutFlowComponent = () => {
   const { fitView } = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [element, setElement] = useState({});
 
   const onLayout = useCallback(
     (direction) => {
@@ -45,6 +46,9 @@ const LayoutFlowComponent = () => {
     };
   };
 
+  const handleNodeClick = (event, node) => {
+    setElement(node);
+  };
 
   const addNode = (newNode) => {
     const randomSuffix = Math.floor(Math.random() * 1000);
@@ -61,15 +65,28 @@ const LayoutFlowComponent = () => {
     setEdges((prevEdges) => [...prevEdges, edge]);
   };
 
+
+  const editNode = (newNode) => {
+
+    setNodes((prevNodes) =>
+      prevNodes.map((node) =>
+        node.id === newNode.id ? { ...node, ...newNode } : node
+      )
+    );
+
+  };
+
   return (
     <Container fluid>
       <Row className="h-100">
         <Col className="h-100" xs={10}>
-          <Graph nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
+          <Graph nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
         </Col>
         <Col className="h-100">
           <ControlPanel
+            editNode={editNode}
             addNode={addNode}
+            element={element}
           />
         </Col>
       </Row>

@@ -18,7 +18,7 @@ const nodeTypes = {
 };
 
 
-const Graph = ({ nodes, edges, onNodesChange, onEdgesChange }) => (
+const Graph = ({ nodes, edges, onNodeClick, onNodesChange, onEdgesChange }) => (
   <div style={{ width: '100%', height: '100vh' }}>
     <ReactFlow
       nodes={nodes}
@@ -26,6 +26,7 @@ const Graph = ({ nodes, edges, onNodesChange, onEdgesChange }) => (
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       fitView
+      onNodeClick={onNodeClick}
       // nodeTypes={nodeTypes}
     >
       <Controls />

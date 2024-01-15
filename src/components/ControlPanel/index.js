@@ -131,6 +131,7 @@ const ControlPanel = ({ element, editNode, addNode }) => {
     api: false,
     analytics: false,
   });
+  const [isCardOpen, setIsCardOpen] = useState(true);
   const renderTypeNode = (index, node) => {
     const handleAddNode = () => addNode(typeNodes[index]);
     return (
@@ -187,102 +188,128 @@ const ControlPanel = ({ element, editNode, addNode }) => {
     setElementState(element);
   }, [element]);
 
+  const toggleCard = () => {
+    setIsCardOpen(!isCardOpen);
+  };
+
+  const styles = {
+    paddingRight: '0 !important',
+    paddingLeft: '0 !important',
+  }
+  // Доделать!!!
   return (
-    <Card className='h-100 shadow'>
-      <Card.Body className='d-flex flex-column'>
-        <Card.Title>Редактор</Card.Title>
-        <Dropdown as={ButtonGroup}>
-          {/*<Button className="btn-primary">Добавить узел</Button>*/}
-          <Dropdown.Toggle split className='btn-primary' id='dropdown-split-basic' />
-          <Dropdown.Menu>
-            {typeNodes.map((node, index) => renderTypeNode(index, node))}
-          </Dropdown.Menu>
-        </Dropdown>
+    <>
+      <Container fluid>
+        <Row>
+          <Col md={1} style={styles} >
+            <Card onClick={toggleCard} className=' text-black d-flex align-items-center justify-content-center  h-100' style={{ writingMode: 'vertical-rl' , backgroundColor: '#f0f0f0', paddingRight: '0 !important',  }}>
+              {isCardOpen ? 'Закрыть карточку' : 'Открыть карточку'}
+            </Card>
+          </Col>
+          <Col className='col-md-11' style={styles}>
+            {isCardOpen &&
+              <Card xs={12} className='h-100 shadow d-flex flex-column'>
+                <Card.Body className='d-flex flex-column'>
+                  <Card.Title>Редактор</Card.Title>
+                  <Dropdown as={ButtonGroup}>
+                    {/*<Button className="btn-primary">Добавить узел</Button>*/}
+                    <Dropdown.Toggle split className='btn-primary' id='dropdown-split-basic' />
+                    <Dropdown.Menu>
+                      {typeNodes.map((node, index) => renderTypeNode(index, node))}
+                    </Dropdown.Menu>
+                  </Dropdown>
 
-        {buttonStates.sendMessage && <Form className='mt-3'>
-          <Form.Group>
-            <Form.Control
-              as='textarea'
-              rows={3}
-              value={elementState?.data?.label || ''}
-              onChange={handleChange}
-            />
-          </Form.Group>
-        </Form>}
+                  {buttonStates.sendMessage && <Form className='mt-3'>
+                    <Form.Group>
+                      <Form.Control
+                        as='textarea'
+                        rows={3}
+                        value={elementState?.data?.label || ''}
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                  </Form>}
 
-        {buttonStates.attachFile && <div className='mt-3'>Вложение</div>}
-        {buttonStates.buttons && <div className='mt-3'>Кнопки</div>}
-        {buttonStates.performAction && <div className='mt-3'>Действие</div>}
-        {buttonStates.calculator && <div className='mt-3'>Калькулятор</div>}
-        {buttonStates.api && <div className='mt-3'>API - запрос</div>}
-        {buttonStates.analytics && <div className='mt-3'>Аналитика</div>}
+                  {buttonStates.attachFile && <div className='mt-3'>Вложение</div>}
+                  {buttonStates.buttons && <div className='mt-3'>Кнопки</div>}
+                  {buttonStates.performAction && <div className='mt-3'>Действие</div>}
+                  {buttonStates.calculator && <div className='mt-3'>Калькулятор</div>}
+                  {buttonStates.api && <div className='mt-3'>API - запрос</div>}
+                  {buttonStates.analytics && <div className='mt-3'>Аналитика</div>}
 
 
-        <div className='mt-3' style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px' }}>
+                  <div className='mt-3' style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '4px' }}>
 
-          <Button className='d-flex align-items-center justify-content-start'
-                  variant={buttonStates.sendMessage ? 'primary' : 'outline-primary'} onClick={() => {
-            handleSendMessage();
-            handleButtonClick('sendMessage');
-          }}>
-            <BiMessage style={{ marginRight: 4 }} /> Сообщение
-          </Button>
+                    <Button className='d-flex align-items-center justify-content-start'
+                            variant={buttonStates.sendMessage ? 'primary' : 'outline-primary'} onClick={() => {
+                      handleSendMessage();
+                      handleButtonClick('sendMessage');
+                    }}>
+                      <BiMessage style={{ marginRight: 4 }} /> Сообщение
+                    </Button>
 
-          <Button className='d-flex align-items-center justify-content-start'
-                  variant={buttonStates.attachFile ? 'primary' : 'outline-primary'} onClick={() => {
-            handleAttachFile();
-            handleButtonClick('attachFile');
-          }}>
-            <BiPaperclip style={{ marginRight: 4 }} /> Вложение
-          </Button>
+                    <Button className='d-flex align-items-center justify-content-start'
+                            variant={buttonStates.attachFile ? 'primary' : 'outline-primary'} onClick={() => {
+                      handleAttachFile();
+                      handleButtonClick('attachFile');
+                    }}>
+                      <BiPaperclip style={{ marginRight: 4 }} /> Вложение
+                    </Button>
 
-          <Button className='d-flex align-items-center justify-content-start'
-                  variant={buttonStates.buttons ? 'primary' : 'outline-primary'} onClick={() => {
-            handleButtonClick('buttons');
-          }}>
-            <FaBars style={{ marginRight: 4 }} /> Кнопки
-          </Button>
+                    <Button className='d-flex align-items-center justify-content-start'
+                            variant={buttonStates.buttons ? 'primary' : 'outline-primary'} onClick={() => {
+                      handleButtonClick('buttons');
+                    }}>
+                      <FaBars style={{ marginRight: 4 }} /> Кнопки
+                    </Button>
 
-          <Button className='d-flex align-items-center justify-content-start'
-                  variant={buttonStates.performAction ? 'primary' : 'outline-primary'} onClick={() => {
-            handlePerformAction();
-            handleButtonClick('performAction');
-          }}>
-            <BiTask style={{ marginRight: 4 }} /> Действие
-          </Button>
+                    <Button className='d-flex align-items-center justify-content-start'
+                            variant={buttonStates.performAction ? 'primary' : 'outline-primary'} onClick={() => {
+                      handlePerformAction();
+                      handleButtonClick('performAction');
+                    }}>
+                      <BiTask style={{ marginRight: 4 }} /> Действие
+                    </Button>
 
-          <Button className='d-flex align-items-center justify-content-start'
-                  variant={buttonStates.calculator ? 'primary' : 'outline-primary'} onClick={() => {
-            handleCalculator();
-            handleButtonClick('calculator');
-          }}>
-            <BiCalculator style={{ marginRight: 4 }} /> Калькулятор
-          </Button>
+                    <Button className='d-flex align-items-center justify-content-start'
+                            variant={buttonStates.calculator ? 'primary' : 'outline-primary'} onClick={() => {
+                      handleCalculator();
+                      handleButtonClick('calculator');
+                    }}>
+                      <BiCalculator style={{ marginRight: 4 }} /> Калькулятор
+                    </Button>
 
-          <Button className='d-flex align-items-center jjustify-content-start'
-                  variant={buttonStates.api ? 'primary' : 'outline-primary'} onClick={() => {
-            handleButtonClick('api');
-          }}>
-            <TbApi style={{ marginRight: 4 }} /> Api - запрос
-          </Button>
+                    <Button className='d-flex align-items-center jjustify-content-start'
+                            variant={buttonStates.api ? 'primary' : 'outline-primary'} onClick={() => {
+                      handleButtonClick('api');
+                    }}>
+                      <TbApi style={{ marginRight: 4 }} /> Api - запрос
+                    </Button>
 
-          <Button className='d-flex align-items-center justify-content-start'
-                  variant={buttonStates.analytics ? 'primary' : 'outline-primary'} onClick={() => {
-            handleButtonClick('analytics');
-          }}>
-            <MdAnalytics style={{ marginRight: 4 }} /> Аналитика
-          </Button>
+                    <Button className='d-flex align-items-center justify-content-start'
+                            variant={buttonStates.analytics ? 'primary' : 'outline-primary'} onClick={() => {
+                      handleButtonClick('analytics');
+                    }}>
+                      <MdAnalytics style={{ marginRight: 4 }} /> Аналитика
+                    </Button>
 
-        </div>
+                  </div>
 
-      </Card.Body>
-      <Card.Footer className='d-flex justify-content-center'>
-        <ButtonGroup size='sm'>
-          <Button className='btn btn-primary' onClick={() => editNode(elementState)}>Сохранить</Button>
-          <Button className='btn btn-default' onClick={() => editNode(elementState)}>Сохранить и закрыть</Button>
-        </ButtonGroup>
-      </Card.Footer>
-    </Card>
+                </Card.Body>
+                <Card.Footer className='d-flex justify-content-center'>
+                  <ButtonGroup size='sm'>
+                    <Button className='btn btn-primary' onClick={() => editNode(elementState)}>Сохранить</Button>
+                    <Button className='btn btn-default' onClick={() => editNode(elementState)}>Сохранить и
+                      закрыть</Button>
+                  </ButtonGroup>
+                </Card.Footer>
+              </Card>
+            }
+
+        </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

@@ -76,13 +76,19 @@ const LayoutFlowComponent = () => {
 
   };
 
+const styles = {
+  paddingRight: '0 !important',
+  paddingLeft: '0 !important',
+}
+
   return (
-    <Container fluid>
-      <Row className="h-100">
-        <Col className="h-100" xs={9}>
-          <Graph nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} />
+    <Container fluid  >
+      <Row className="h-100" >
+        <Col className="vh-100" xs={9}  >
+          <Graph nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange}
+                 onEdgesChange={onEdgesChange} />
         </Col>
-        <Col className="h-100" xs={3}>
+        <Col className="vh-100 " xs={3} style={styles} >
           <ControlPanel
             editNode={editNode}
             addNode={addNode}

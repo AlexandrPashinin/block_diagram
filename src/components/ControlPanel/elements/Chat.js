@@ -17,9 +17,9 @@ const ChatApp = () => {
             <div className="mb-2">
               <strong>Пользователь 1:</strong> Привет, как дела?
             </div>
-            <div className="mb-2 mr-auto">
+            <div className=" " style={{marginLeft:'150px'}}>
               {/* Используем ml-auto для выравнивания сообщения пользователя 2 справа */}
-              <strong>Пользователь 2:</strong> Привет! Всё отлично, спасибо.
+              Привет! Всё отлично, спасибо.<strong>:Пользователь 2</strong>
             </div>
 
           </div>

@@ -5,6 +5,7 @@ import { initialNodes, initialEdges } from '../../utils/nodes-edges.js';
 import Graph from '../Graph';
 import ControlPanel from '../ControlPanel';
 import { Container, Row, Col } from 'react-bootstrap';
+import ControlPanelLeft from '../ControlPanelLeft';
 
 
 const LayoutFlowComponent = () => {
@@ -14,6 +15,7 @@ const LayoutFlowComponent = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [element, setElement] = useState({});
   const [isCardOpen, setIsCardOpen] = useState(true);
+
   const onLayout = useCallback(
     (direction) => {
     }, []);
@@ -85,14 +87,15 @@ const styles = {
     setIsCardOpen(!isCardOpen);
   };
 
+
   return (
     <Container fluid  >
       <Row className="h-100" >
-        <Col className="vh-100" xs = {isCardOpen ? 9 : 12}  >
+        <Col className="vh-100" xs = {isCardOpen ? 9: 12}  >
           <Graph  toggleCard={toggleCard} isCardOpen={isCardOpen} nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange}
                  onEdgesChange={onEdgesChange} />
         </Col>
-        <Col className="vh-100  " xs={ isCardOpen ? 3 : 0} style={styles} >
+        <Col className="vh-100" xs={ isCardOpen ? 3 : 0} style={styles} >
           <ControlPanel
             toggleCard={toggleCard}
             setIsCardOpen={setIsCardOpen}

@@ -1,6 +1,12 @@
 // Graph.js
 import React from 'react';
 import ReactFlow, { Background, Controls, MiniMap , Panel} from 'reactflow';
+import StartNode from './types/StartNode';
+import HelloNode from './types/HelloNode';
+
+import { CheckNode, TransferNode, EndNode, ReminderNode, CommentNode,StateNode } from './types/index';
+
+
 
 const Graph = ({ nodes, edges, onNodeClick, onNodesChange, onEdgesChange, isCardOpen , toggleCard }) => (
   <div style={{ width: '100%', height: '100vh' ,display: 'flex' }}>
@@ -11,6 +17,7 @@ const Graph = ({ nodes, edges, onNodeClick, onNodesChange, onEdgesChange, isCard
       onEdgesChange={onEdgesChange}
       fitView
       onNodeClick={onNodeClick}
+      // nodeTypes={nodeTypes}
     >
       <Controls />
       <MiniMap />

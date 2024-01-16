@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   Card,
-  ListGroup,
   Button,
   ButtonGroup,
   Dropdown,
@@ -120,7 +119,7 @@ const typeNodes = [
   },
 ];
 
-const ControlPanel = ({ element, editNode, addNode }) => {
+const ControlPanel = ({ element, editNode, addNode, isCardOpen,toggleCard}) => {
   const [elementState, setElementState] = useState({});
   const [buttonStates, setButtonStates] = useState({
     sendMessage: true,
@@ -131,7 +130,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
     api: false,
     analytics: false,
   });
-  const [isCardOpen, setIsCardOpen] = useState(true);
   const renderTypeNode = (index, node) => {
     const handleAddNode = () => addNode(typeNodes[index]);
     return (
@@ -139,27 +137,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
         {node.data.icon} {node.data.label}
       </Dropdown.Item>
     );
-  };
-
-  const handleSendMessage = () => {
-    // Handle message button click
-    console.log('Sending a message...');
-
-  };
-
-  const handleAttachFile = () => {
-    // Handle attachment button click
-    console.log('Attaching a file...');
-  };
-
-  const handlePerformAction = () => {
-    // Handle action button click
-    console.log('Performing an action...');
-  };
-
-  const handleCalculator = () => {
-    // Handle calculator button click
-    console.log('Opening calculator...');
   };
 
   const handleChange = (e) => {
@@ -188,27 +165,27 @@ const ControlPanel = ({ element, editNode, addNode }) => {
     setElementState(element);
   }, [element]);
 
-  const toggleCard = () => {
-    setIsCardOpen(!isCardOpen);
-  };
+
 
   const styles = {
     paddingRight: '0 !important',
     paddingLeft: '0 !important',
   }
-  // Доделать!!!
   return (
     <>
       <Container fluid>
         <Row>
           <Col md={1} style={styles} >
-            <Card onClick={toggleCard} className=' text-black d-flex align-items-center justify-content-center  h-100' style={{ writingMode: 'vertical-rl' , backgroundColor: '#f0f0f0', paddingRight: '0 !important',  }}>
-              {isCardOpen ? 'Закрыть карточку' : 'Открыть карточку'}
+            <Card onClick={toggleCard}
+             className='text-black d-flex align-items-center justify-content-center  h-100'
+             style={{ writingMode: 'vertical-rl' , backgroundColor: '#f0f0f0', paddingRight: '0 !important', cursor: 'pointer'  }}
+            >
+              Закрыть карточку
             </Card>
           </Col>
           <Col className='col-md-11' style={styles}>
             {isCardOpen &&
-              <Card xs={12} className='h-100 shadow d-flex flex-column'>
+              <Card  className='h-100 shadow d-flex flex-column'>
                 <Card.Body className='d-flex flex-column'>
                   <Card.Title>Редактор</Card.Title>
                   <Dropdown as={ButtonGroup}>
@@ -242,7 +219,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
 
                     <Button className='d-flex align-items-center justify-content-start'
                             variant={buttonStates.sendMessage ? 'primary' : 'outline-primary'} onClick={() => {
-                      handleSendMessage();
                       handleButtonClick('sendMessage');
                     }}>
                       <BiMessage style={{ marginRight: 4 }} /> Сообщение
@@ -250,7 +226,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
 
                     <Button className='d-flex align-items-center justify-content-start'
                             variant={buttonStates.attachFile ? 'primary' : 'outline-primary'} onClick={() => {
-                      handleAttachFile();
                       handleButtonClick('attachFile');
                     }}>
                       <BiPaperclip style={{ marginRight: 4 }} /> Вложение
@@ -265,7 +240,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
 
                     <Button className='d-flex align-items-center justify-content-start'
                             variant={buttonStates.performAction ? 'primary' : 'outline-primary'} onClick={() => {
-                      handlePerformAction();
                       handleButtonClick('performAction');
                     }}>
                       <BiTask style={{ marginRight: 4 }} /> Действие
@@ -273,7 +247,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
 
                     <Button className='d-flex align-items-center justify-content-start'
                             variant={buttonStates.calculator ? 'primary' : 'outline-primary'} onClick={() => {
-                      handleCalculator();
                       handleButtonClick('calculator');
                     }}>
                       <BiCalculator style={{ marginRight: 4 }} /> Калькулятор
@@ -292,7 +265,6 @@ const ControlPanel = ({ element, editNode, addNode }) => {
                     }}>
                       <MdAnalytics style={{ marginRight: 4 }} /> Аналитика
                     </Button>
-
                   </div>
 
                 </Card.Body>

@@ -13,7 +13,7 @@ const LayoutFlowComponent = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [element, setElement] = useState({});
-
+  const [isCardOpen, setIsCardOpen] = useState(true);
   const onLayout = useCallback(
     (direction) => {
     }, []);
@@ -23,7 +23,7 @@ const LayoutFlowComponent = () => {
       id: `e${prevNode.id}-${newNode.id}`,
       source: prevNode.id,
       target: newNode.id,
-      animated: true, // или любые другие свойства, которые вы хотите добавить
+      animated: true,
     };
   };
   const createNewNode = ({ type, data, suffix, size, style }) => {
@@ -81,15 +81,22 @@ const styles = {
   paddingLeft: '0 !important',
 }
 
+  const toggleCard = () => {
+    setIsCardOpen(!isCardOpen);
+  };
+
   return (
     <Container fluid  >
       <Row className="h-100" >
-        <Col className="vh-100" xs={9}  >
-          <Graph nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange}
+        <Col className="vh-100" xs = {isCardOpen ? 9 : 12}  >
+          <Graph  toggleCard={toggleCard} isCardOpen={isCardOpen} nodes={nodes} edges={edges} onNodeClick={handleNodeClick} onNodesChange={onNodesChange}
                  onEdgesChange={onEdgesChange} />
         </Col>
-        <Col className="vh-100 " xs={3} style={styles} >
+        <Col className="vh-100  " xs={ isCardOpen ? 3 : 0} style={styles} >
           <ControlPanel
+            toggleCard={toggleCard}
+            setIsCardOpen={setIsCardOpen}
+            isCardOpen={isCardOpen}
             editNode={editNode}
             addNode={addNode}
             element={element}

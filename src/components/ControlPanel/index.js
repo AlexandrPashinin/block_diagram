@@ -24,6 +24,7 @@ import { FaBars } from 'react-icons/fa';
 import { BiAlarmAdd, BiCalculator, BiMessage, BiPaperclip, BiTask } from 'react-icons/bi';
 import ButtonComponents from './elements/ButtonComponents';
 import ChatApp from './elements/Chat';
+import APIComponent from '../APIComponent';
 
 const typeNodes = [
   {
@@ -77,7 +78,7 @@ const typeNodes = [
     },
     style: {
       backgroundColor: 'orange',
-      backgroundOpacity: 0.5  ,
+      backgroundOpacity: 0.5,
     },
   },
   {
@@ -121,7 +122,7 @@ const typeNodes = [
   },
 ];
 
-const ControlPanel = ({ element, editNode, addNode, isCardOpen,toggleCard}) => {
+const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) => {
   const [elementState, setElementState] = useState({});
   const [buttonStates, setButtonStates] = useState({
     sendMessage: true,
@@ -132,7 +133,7 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen,toggleCard}) => {
     api: false,
     analytics: false,
   });
-  const [open , setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const renderTypeNode = (index, node) => {
     const handleAddNode = () => addNode(typeNodes[index]);
     return (
@@ -168,21 +169,26 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen,toggleCard}) => {
     setElementState(element);
   }, [element]);
 
-const handleOpenChat = ()=>{
-  setOpen((prev)=>!prev)
-}
+  const handleOpenChat = () => {
+    setOpen((prev) => !prev);
+  };
 
   const styles = {
     paddingRight: '0 !important',
     paddingLeft: '0 !important',
-  }
+  };
   return (
     <>
       <Container fluid>
-        <Row><Col md={1} style={styles} >
+        <Row><Col md={1} style={styles}>
           <Card onClick={toggleCard}
                 className='text-black d-flex align-items-center justify-content-center  h-100'
-                style={{ writingMode: 'vertical-rl' , backgroundColor: '#f0f0f0', paddingRight: '0 !important', cursor: 'pointer'  }}
+                style={{
+                  writingMode: 'vertical-rl',
+                  backgroundColor: '#f0f0f0',
+                  paddingRight: '0 !important',
+                  cursor: 'pointer',
+                }}
           >
             Закрыть карточку
           </Card>
@@ -190,7 +196,7 @@ const handleOpenChat = ()=>{
 
           <Col className='col-md-11' style={styles}>
             {isCardOpen &&
-              <Card  className='vh-100 shadow d-flex flex-column'>
+              <Card className='vh-100 shadow d-flex flex-column'>
                 <Card.Body className='d-flex flex-column'>
                   <Card.Title>Редактор</Card.Title>
                   <Dropdown as={ButtonGroup}>
@@ -212,10 +218,12 @@ const handleOpenChat = ()=>{
                   </Form>}
 
                   {buttonStates.attachFile && <div className='mt-3'>Вложение</div>}
-                  {buttonStates.buttons && <ButtonComponents/>}
+                  {buttonStates.buttons && <ButtonComponents />}
                   {buttonStates.performAction && <div className='mt-3'>Действие</div>}
                   {buttonStates.calculator && <div className='mt-3'>Калькулятор</div>}
-                  {buttonStates.api && <div className='mt-3'>API - запрос</div>}
+                  {buttonStates.api && <div className='mt-3'>
+                    <APIComponent />
+                  </div>}
                   {buttonStates.analytics && <div className='mt-3'>Аналитика</div>}
 
 
@@ -272,32 +280,22 @@ const handleOpenChat = ()=>{
                   </div>
 
                 </Card.Body>
-                  {/*<div style={{maxWidth:'550px' , maxHeight: '550px', background:'red'}}> 11</div>*/}
-                { open &&<ChatApp/>}
-                {open &&
-                  <Form className='mb-3 p-3' >
-                    <Form.Group  style={{border:'1px solid black', borderRadius:'5px'}} >
-                      <Form.Control
-                        as='textarea'
-                        rows={10}
-                      />
-                    </Form.Group>
-                  </Form>
-                }
+                {/*<div style={{maxWidth:'550px' , maxHeight: '550px', background:'red'}}> 11</div>*/}
+                {open && <ChatApp />}
                 <Card.Footer className='d-flex justify-content-center'>
                   <ButtonGroup size='sm'>
                     <Button className='btn btn-primary ' onClick={() => editNode(elementState)}>Сохранить</Button>
                     <Button className='btn btn-default' onClick={() => editNode(elementState)}>Сохранить и
                       закрыть
                     </Button>
-                    <Button className='btn btn-default' onClick={handleOpenChat} >
+                    <Button className='btn btn-default' onClick={handleOpenChat}>
                       открыть чат бота
                     </Button>
                   </ButtonGroup>
                 </Card.Footer>
               </Card>
             }
-        </Col>
+          </Col>
         </Row>
       </Container>
     </>

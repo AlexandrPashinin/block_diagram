@@ -285,15 +285,13 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
                 {/*<div style={{maxWidth:'550px' , maxHeight: '550px', background:'red'}}> 11</div>*/}
                 {open && <ChatApp />}
                 <Card.Footer className='d-flex justify-content-center'>
-                  <ButtonGroup size='sm'>
-                    <Button className='btn btn-primary ' onClick={() => editNode(elementState)}>Сохранить</Button>
-                    <Button className='btn btn-default' onClick={() => editNode(elementState)}>Сохранить и
+                    <Button className='btn btn-primary m-1 ' style={{marginRight:'3px'}} onClick={() => editNode(elementState)}>Сохранить</Button>
+                    <Button className='btn btn-default m-1' onClick={() => editNode(elementState)}>Сохранить и
                       закрыть
                     </Button>
-                    <Button className='btn btn-default' onClick={handleOpenChat}>
+                    <Button className='btn btn-default m-1' onClick={handleOpenChat}>
                       { open ? 'закрыть чат бота' :'открыть чат бота'}
                     </Button>
-                  </ButtonGroup>
                 </Card.Footer>
               </Card>
             }

@@ -31,6 +31,7 @@ const ChatApp = () => {
               border: '1px solid #ddd',
               overflowY: 'scroll',
               padding: '10px',
+              margin:'0 5px'
             }}
           >
             {messages.map((message, index) => (

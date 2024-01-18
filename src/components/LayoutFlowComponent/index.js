@@ -1,11 +1,10 @@
-// LayoutFlowComponent.js
+
 import React, { useCallback, useState } from 'react';
 import { useNodesState, useEdgesState, useReactFlow } from 'reactflow';
 import { initialNodes, initialEdges } from '../../utils/nodes-edges.js';
 import Graph from '../Graph';
 import ControlPanel from '../ControlPanel';
 import { Container, Row, Col } from 'react-bootstrap';
-import ControlPanelLeft from '../ControlPanelLeft';
 
 
 const LayoutFlowComponent = () => {

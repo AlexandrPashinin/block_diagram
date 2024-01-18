@@ -44,13 +44,16 @@ const ChatApp = () => {
           <Form onSubmit={handleSubmit(onSubmit)} className='mb-3 p-3'>
             <Form.Group style={{ border: '1px solid black', borderRadius: '5px' }}>
               <Controller
+
                 name="message"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
                   <Form.Control
+                    placeholder='Введите ваше сообщение.....'
                     as="textarea"
-                    rows={10}
+                    rows={1}
+                    style={{ resize: 'none' }}
                     {...field}
                   />
                 )}

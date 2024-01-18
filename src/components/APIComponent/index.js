@@ -73,7 +73,8 @@ function APIComponent() {
             render={({ field }) => (
               <Form.Control
                 as="textarea"
-                rows={5}
+                rows={3}
+                style={{ resize: 'none' }}
                 placeholder="Введите заголовок запроса"
                 {...field}
                 value={requestHeader}
@@ -92,7 +93,8 @@ function APIComponent() {
             render={({ field }) => (
               <Form.Control
                 as="textarea"
-                rows={5}
+                rows={3}
+                style={{ resize: 'none' }}
                 placeholder="Введите JSON параметры"
                 {...field}
                 value={jsonParameters}

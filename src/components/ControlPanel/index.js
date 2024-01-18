@@ -179,7 +179,7 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
   };
   return (
     <>
-      <Container fluid>
+      <Container  fluid>
         <Row><Col md={1} style={styles}>
           <Card onClick={toggleCard}
                 className='text-black d-flex align-items-center justify-content-center  h-100'
@@ -196,9 +196,10 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
 
           <Col className='col-md-11' style={styles}>
             {isCardOpen &&
-              <Card className='vh-100 shadow d-flex flex-column'>
+              <Card className='vh-100 shadow d-flex flex-column overflow-auto' >
                 <Card.Body className='d-flex flex-column'>
-                  <Card.Title>Редактор</Card.Title>
+                  <Card.Title>Редактор
+                  </Card.Title>
                   <Dropdown as={ButtonGroup}>
                     <Dropdown.Toggle split className='btn-primary' id='dropdown-split-basic' />
                     <Dropdown.Menu>
@@ -211,6 +212,7 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
                       <Form.Control
                         as='textarea'
                         rows={3}
+                        style={{ resize: 'none' }}
                         value={elementState?.data?.label || ''}
                         onChange={handleChange}
                       />
@@ -289,7 +291,7 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
                       закрыть
                     </Button>
                     <Button className='btn btn-default' onClick={handleOpenChat}>
-                      открыть чат бота
+                      { open ? 'закрыть чат бота' :'открыть чат бота'}
                     </Button>
                   </ButtonGroup>
                 </Card.Footer>

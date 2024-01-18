@@ -180,19 +180,20 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
   return (
     <>
       <Container  fluid>
-        <Row><Col md={1} style={styles}>
-          <Card onClick={toggleCard}
-                className='text-black d-flex align-items-center justify-content-center  h-100'
-                style={{
-                  writingMode: 'vertical-rl',
-                  backgroundColor: '#f0f0f0',
-                  paddingRight: '0 !important',
-                  cursor: 'pointer',
-                }}
-          >
-            Закрыть карточку
-          </Card>
-        </Col>
+        <Row>
+          <Col md={1} style={styles}>
+            <Card onClick={toggleCard}
+                  className='text-black d-flex align-items-center justify-content-center  h-100'
+                  style={{
+                    writingMode: 'vertical-rl',
+                    backgroundColor: '#f0f0f0',
+                    paddingRight: '0 !important',
+                    cursor: 'pointer',
+                  }}
+            >
+              Закрыть карточку
+            </Card>
+          </Col>
 
           <Col className='col-md-11' style={styles}>
             {isCardOpen &&

@@ -36,7 +36,7 @@ const LayoutFlowComponent = () => {
         y: lastNode.position.y + data.height,
       };
     } else {
-      position = { x: 11110, y: 0 }; // Позиция для первого узла
+      position = { x: 0, y: 0 }; // Позиция для первого узла
     }
     return {
       id: `${type}-${suffix}`,

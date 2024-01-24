@@ -26,6 +26,7 @@ import ButtonComponents from './elements/ButtonComponents';
 import ChatApp from './elements/Chat';
 import APIComponent from '../APIComponent';
 
+
 const typeNodes = [
   {
     type: 'start', backgroundColor: 'red',
@@ -177,6 +178,9 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
     paddingRight: '0 !important',
     paddingLeft: '0 !important',
   };
+
+
+
   return (
     <>
       <Container  fluid>
@@ -267,7 +271,7 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
                       <BiCalculator style={{ marginRight: 4 }} /> Калькулятор
                     </Button>
 
-                    <Button className='d-flex align-items-center jjustify-content-start'
+                    <Button className='d-flex align-items-center justify-content-start'
                             variant={buttonStates.api ? 'primary' : 'outline-primary'} onClick={() => {
                       handleButtonClick('api');
                     }}>
@@ -281,9 +285,12 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
                       <MdAnalytics style={{ marginRight: 4 }} /> Аналитика
                     </Button>
                   </div>
-
                 </Card.Body>
-                {/*<div style={{maxWidth:'550px' , maxHeight: '550px', background:'red'}}> 11</div>*/}
+
+                {openApi && apimockData.map((website, index) => (
+                  <div key={index}>{website}</div>
+                ))}
+
                 {open && <ChatApp />}
                 <Card.Footer className='d-flex justify-content-center'>
                     <Button className='btn btn-primary m-1 ' style={{marginRight:'3px'}} onClick={() => editNode(elementState)}>Сохранить</Button>

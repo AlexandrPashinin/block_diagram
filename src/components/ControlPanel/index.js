@@ -287,10 +287,6 @@ const ControlPanel = ({ element, editNode, addNode, isCardOpen, toggleCard }) =>
                   </div>
                 </Card.Body>
 
-                {openApi && apimockData.map((website, index) => (
-                  <div key={index}>{website}</div>
-                ))}
-
                 {open && <ChatApp />}
                 <Card.Footer className='d-flex justify-content-center'>
                     <Button className='btn btn-primary m-1 ' style={{marginRight:'3px'}} onClick={() => editNode(elementState)}>Сохранить</Button>

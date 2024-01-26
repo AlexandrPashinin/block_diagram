@@ -54,7 +54,7 @@ const salesFunnelData = [
     style: { backgroundColor: '#00ccff', backgroundOpacity: 0.8 },
     edges: [
       { id: '2-3', source: '2', target: '3', animated: true }],
-    position: { x: 400, y: 100 },
+    position: { x: 250, y: 100 },
   },
   {
     id: '3',
@@ -62,23 +62,14 @@ const salesFunnelData = [
     data: { label: 'Переговоры', width: 150, height: 60 },
     style: { backgroundColor: '#ccffcc', backgroundOpacity: 0.8 },
     // edge: { id: '3-4', source: '3', target: '4', animated: true },
-    position: { x: 500, y: 200 },
-  },
-  {
-    id: '4',
-    type: 'stage',
-    data: { label: 'Закрытие сделки', width: 150, height: 60 },
-    style: { backgroundColor: '#ff9999', backgroundOpacity: 0.8 },
-    position: { x: 300, y: 400 },
-
-    // Этот узел не имеет исходящих рёбер, так как это конечный этап воронки
+    position: { x: 250, y: 200 },
   },
   {
     id: '5',
     type: 'stage',
     data: { label: 'сомнение клиента', width: 150, height: 60 },
     style: { backgroundColor: '#ff9', backgroundOpacity: 0.8 },
-    position: { x: 100, y: 100 },
+    position: { x: 400, y: 300 },
     edges: [{ id: '3-5', source: '3', target: '5', animated: true },],
     // Этот узел не имеет исходящих рёбер, так как это конечный этап воронки
   },
@@ -87,16 +78,21 @@ const salesFunnelData = [
     type: 'stage',
     data: { label: 'презентация наилучшего для него исхода', width: 150, height: 60 },
     style: { backgroundColor: '#ff9', backgroundOpacity: 0.8 },
-    position: { x: 50, y: 200 },
+    position: { x: 100, y: 270 },
     edges: [
       { id: '3-6', source: '3', target: '6', animated: true },
       { id: '6-4', source: '6', target: '4', animated: true },
       { id: '5-4', source: '5', target: '4', animated: true },
     ]
+  },
+  {
+    id: '4',
+    type: 'stage',
+    data: { label: 'Закрытие сделки', width: 150, height: 60 },
+    style: { backgroundColor: '#ff9999', backgroundOpacity: 0.8 },
+    position: { x: 250, y: 400 },
 
-
-    // Этот узел не имеет исходящих рёбер, так как это конечный этап воронки
-  }
+  },
 
 ];
 

@@ -96,13 +96,13 @@ const salesFunnelData = [
 
 ];
 
-
 // Создаем массив узлов, исключая информацию о рёбрах
 export const initialNodes = salesFunnelData.map(({ edge, ...node }) => node);
 
 // Создаем массив рёбер
 export const initialEdges = salesFunnelData.reduce((acc, { edges }) => acc.concat(edges || []), []);
 
-// console.log(initialNodes);
-// console.log(initialEdges);
-// console.log(salesFunnelData);
+console.log(initialNodes);
+console.log(initialEdges);
+
+
